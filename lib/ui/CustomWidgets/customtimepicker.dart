@@ -9,7 +9,7 @@ class MyTimePicker extends StatefulWidget {
 class _MyTimePicker extends State<MyTimePicker> {
   TimeOfDay _timeInfo = null;
   TimeOfDay _timePick = null;
-  String _ayarlananSaat = null;
+  String ayarlananSaat = null;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -25,7 +25,7 @@ class _MyTimePicker extends State<MyTimePicker> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
-                  _timeInfo == null ? Sabitler.timePickStr : '$_ayarlananSaat',
+                  _timeInfo == null ? Sabitler.timePickStr : '$ayarlananSaat',
                   style: TextStyle(color: Colors.black, fontSize: 16)),
             ),
           ],
@@ -40,16 +40,16 @@ class _MyTimePicker extends State<MyTimePicker> {
       initialTime: TimeOfDay.now(),
     );
     if (_timePick != null && _timePick != _timeInfo) {
+      MaterialLocalizations localizations = MaterialLocalizations.of(context);
+      ayarlananSaat =
+          localizations.formatTimeOfDay(_timePick, alwaysUse24HourFormat: true);
       setState(() {
         _timeInfo = _timePick;
-        //var formatter = TimeOfDayFormat.HH_colon_mm;
-       //_ayarlananSaat =_timePick.format('HH:MM') ;
-        print(_ayarlananSaat);
       });
     }
 
     print(_timePick.toString());
 
-    return _ayarlananSaat;
+    return ayarlananSaat;
   }
 }

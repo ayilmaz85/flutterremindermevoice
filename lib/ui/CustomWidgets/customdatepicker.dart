@@ -12,7 +12,7 @@ class _MyDatePickerState extends State<MyDatePicker> {
   //GlobalKey key = GlobalKey();
   DateTime _pickedDate;
   DateTime _dateInfo;
-  String _myDatePick;
+  String myDatePick;
 
   RemindingViewModel remindingViewModel = RemindingViewModel();
 
@@ -32,7 +32,7 @@ class _MyDatePickerState extends State<MyDatePicker> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  _dateInfo == null ? Sabitler.datePickStr : '$_myDatePick',
+                  _dateInfo == null ? Sabitler.datePickStr : '$myDatePick',
                   //_pickedDate == null ? Sabitler.datePickStr : _myDatePick,
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
@@ -56,11 +56,8 @@ class _MyDatePickerState extends State<MyDatePicker> {
         print(_pickedDate);
         var format = DateFormat('dd/MM/yyyy');
 
-        _myDatePick = format.format(_pickedDate);
-        print(_myDatePick);
+        myDatePick = format.format(_pickedDate);
       });
     }
-
-    return remindingViewModel.date = _myDatePick;
   }
 }

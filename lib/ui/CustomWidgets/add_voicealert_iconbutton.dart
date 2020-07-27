@@ -9,8 +9,8 @@ import '../../Sabitler/Sabitler.dart';
 import 'voicerecordbutton.dart';
 
 class AddVoiceAlertIconButton extends StatefulWidget {
-  final String title;
-  final String path;
+  // final String title;
+  // final String path;
   @override
   _AddVoiceAlertIconButtonState createState() =>
       _AddVoiceAlertIconButtonState();
