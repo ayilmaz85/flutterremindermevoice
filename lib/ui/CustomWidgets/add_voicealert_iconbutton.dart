@@ -1,16 +1,15 @@
-import 'package:aesbilisimteknolojileri/core/Model/MVVM/reminding_vm.dart';
-import 'package:aesbilisimteknolojileri/ui/CustomWidgets/customdatepicker.dart';
-import 'package:aesbilisimteknolojileri/ui/CustomWidgets/customtimepicker.dart';
-import 'package:aesbilisimteknolojileri/ui/CustomWidgets/recorded_file_plays.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../Sabitler/Sabitler.dart';
+import 'custom_time_picker.dart';
+import 'customdatepicker.dart';
+import 'recorded_file_plays.dart';
 import 'voicerecordbutton.dart';
 
 class AddVoiceAlertIconButton extends StatefulWidget {
   // final String title;
   // final String path;
+
   @override
   _AddVoiceAlertIconButtonState createState() =>
       _AddVoiceAlertIconButtonState();
@@ -18,7 +17,6 @@ class AddVoiceAlertIconButton extends StatefulWidget {
 
 class _AddVoiceAlertIconButtonState extends State<AddVoiceAlertIconButton> {
   bool _isVisible = false;
-  RemindingViewModel remindingViewModelcl = RemindingViewModel();
 
   @override
   Widget build(BuildContext context) {
@@ -37,78 +35,74 @@ class _AddVoiceAlertIconButtonState extends State<AddVoiceAlertIconButton> {
   Future _buildShowAlertShowDialog(BuildContext context, Size size) {
     return showDialog(
       context: context,
-      child: AlertDialog(
-        title: Text(
-          Sabitler.addReminding,
-          textAlign: TextAlign.center,
-        ),
-        content: Column(
-          //direction: Axis.vertical,
-          mainAxisSize: MainAxisSize.max,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: _TitleTextFieldWidget(),
-            ),
-
-            //Ses kayıt butonu
-            CustomIconButton(
-              size: size.width / 16,
-            ),
-            SizedBox(
-              height: size.height / 24,
-            ),
-
-            //ses kaydedildikten sonra visible olması
-            //ve ses kaydını dinlemeyi sağlar
-            Visibility(
-              visible: _isVisible,
-              child: Row(
-                children: <Widget>[RecordedMediaFilesPlays()],
+      child: SingleChildScrollView(
+        child: AlertDialog(
+          title: Text(
+            Sabitler.addReminding,
+            textAlign: TextAlign.center,
+          ),
+          content: Column(
+            //direction: Axis.vertical,
+            mainAxisSize: MainAxisSize.max,
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: _TitleTextFieldWidget(),
               ),
-            ),
 
-            //Tarih seçimi
-            MyDatePicker(),
+              //Ses kayıt butonu
+              CustomIconButton(
+                size: size.width / 16,
+                //isVisible: isVisible = !isVisible,
+              ),
+              SizedBox(
+                height: size.height / 24,
+              ),
 
-            //saat seçimi
-            MyTimePicker(),
-
-            //Kaydet ve iptal et butonları
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                FlatButton(
-                  onPressed: () => print("hello"),
-                  child: Observer(
-                      builder: (_) => Text(
-                            remindingViewModelcl.date ??
-                                Sabitler.closeButtonText,
-                            style: TextStyle(color: Colors.blue),
-                          )),
+              //ses kaydedildikten sonra visible olması
+              //ve ses kaydını dinlemeyi sağlar
+              Visibility(
+                visible: _isVisible,
+                child: Row(
+                  children: <Widget>[RecordedMediaFilesPlays()],
                 ),
-                FlatButton(
-                  onPressed: () => _printInfo(),
-                  child: Text(
-                    Sabitler.finishedButtonText,
-                    style: TextStyle(color: Colors.blue),
+              ),
+
+              //Tarih seçimi
+              MyDatePicker(),
+
+              //saat seçimi
+              //MyTimePicker(),
+              CustomTimePickerExtensions(),
+
+              //Kaydet ve iptal et butonları
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  FlatButton(
+                    onPressed: () => {},
+                    child: Text(
+                      Sabitler.closeButtonText,
+                      style: TextStyle(color: Colors.blue),
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                  FlatButton(
+                    onPressed: () => {_saveReminded()},
+                    child: Text(
+                      Sabitler.finishedButtonText,
+                      style: TextStyle(color: Colors.blue),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
   }
 
-  _printInfo() {
-    if (remindingViewModelcl.date != null) {
-      print('$remindingViewModelcl.date');
-    } else if (remindingViewModelcl.date == null) {
-      print("date null");
-    }
-  }
+  _saveReminded() {}
 }
 
 class _TitleTextFieldWidget extends StatelessWidget {

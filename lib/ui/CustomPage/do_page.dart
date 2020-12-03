@@ -1,5 +1,3 @@
-import 'package:aesbilisimteknolojileri/Sabitler/Sabitler.dart';
-import 'package:aesbilisimteknolojileri/core/Model/MVVM/reminding_vm.dart';
 import 'package:flutter/material.dart';
 
 class DoPage extends StatefulWidget {
@@ -16,6 +14,7 @@ class _DoPageState extends State<DoPage> {
   }
 
   _yapilacaklarListesi() {
+    
     
   }
 }

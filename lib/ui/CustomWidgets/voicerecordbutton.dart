@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomIconButton extends StatefulWidget {
   Size size;
+  bool isVisible;
 
-  CustomIconButton({size = 24});
+  CustomIconButton({size = 24, isVisible = false});
 
   @override
   _CustomIconButtonState createState() => _CustomIconButtonState();

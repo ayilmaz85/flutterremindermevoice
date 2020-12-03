@@ -18,26 +18,28 @@ class _MyHomePageState extends State<MyHomePage> {
   List<BottomNavigationBarItem> bnavigationbaritems = [
     BottomNavigationBarItem(
         icon: Icon(Icons.warning, color: Colors.black),
-        title: Text("Do!"),
+        label: 'Do!',
         activeIcon: Icon(
           Icons.warning,
           color: Colors.orange,
         )),
     BottomNavigationBarItem(
         icon: Icon(Icons.done_all, color: Colors.black),
-        title: Text("Done :)"),
+        label: "Done :)",
         activeIcon: Icon(
           Icons.done_all,
           color: Colors.orange,
         )),
   ];
-  
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        actions: <Widget>[AddVoiceAlertIconButton()],
+        actions: <Widget>[
+          AddVoiceAlertIconButton(),
+        ],
       ),
       body: pages[_mySelectedIndex],
       bottomNavigationBar: BottomNavigationBar(

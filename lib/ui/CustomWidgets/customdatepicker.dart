@@ -1,7 +1,7 @@
-import 'package:aesbilisimteknolojileri/Sabitler/Sabitler.dart';
-import 'package:aesbilisimteknolojileri/core/Model/MVVM/reminding_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../../Sabitler/Sabitler.dart';
 
 class MyDatePicker extends StatefulWidget {
   @override
@@ -13,9 +13,6 @@ class _MyDatePickerState extends State<MyDatePicker> {
   DateTime _pickedDate;
   DateTime _dateInfo;
   String myDatePick;
-
-  RemindingViewModel remindingViewModel = RemindingViewModel();
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
